@@ -7,7 +7,7 @@
 		<groupId>eap.samples</groupId>
 		<artifactId>parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../eap-parent</relativePath>
+		<relativePath>../parent</relativePath>
 	</parent>
 
 	<artifactId>greeting-rs</artifactId>
