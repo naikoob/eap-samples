@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>eap.samples</groupId>
@@ -18,15 +17,12 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- JBoss distributes a complete set of Java EE APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-eap-javaee7-with-tools stack (you can 
-				read this as the JBoss stack of the Java EE APIs, with some extras tools 
-				for your project, such as Arquillian for testing) -->
+			<!-- 
+				importing the jakartaee8-with-tools BOM adds specs and other useful artifacts as managed dependencies
+			-->
 			<dependency>
 				<groupId>org.jboss.bom</groupId>
-				<artifactId>jboss-eap-javaee7-with-tools</artifactId>
+				<artifactId>jboss-eap-jakartaee8-with-tools</artifactId>
 				<version>${version.jboss.eap}</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -34,13 +30,8 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<!-- Activate the JBoss Enterprise Maven Repository. NOTE: Configuring the 
-		Maven repository in the pom.xml file is not a recommended procedure and is 
-		only done here to make it easier to use the quickstarts. For more information 
-		about how to configure Maven for your application, see the section entitled 
-		'Use the Maven Repository' in the Development Guide for Red Hat JBoss Enterprise 
-		Application Platform located here: 
-		https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/ 
+	<!--
+		Activate the JBoss Enterprise Maven Repository. 
 	-->
 	<repositories>
 		<repository>
@@ -86,6 +77,14 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.0</version>
+					<configuration>
+						<release>11</release>
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>org.wildfly.plugins</groupId>
 					<artifactId>wildfly-maven-plugin</artifactId>
 					<version>${version.wildfly.maven.plugin}</version>
@@ -96,8 +95,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.jboss.eap>7.0.8.GA</version.jboss.eap>
-		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+		<version.jboss.eap>7.3.3.GA</version.jboss.eap>
+		<version.wildfly.maven.plugin>2.0.2.Final</version.wildfly.maven.plugin>
 	</properties>
 
 	<modules>
